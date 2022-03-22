@@ -14,7 +14,7 @@ export default class UsuariosController {
         return user
     }
 
-    //SOY COMENT
+    //SOY COMEN
 
     //CREAR NUEVO USUARIO
     public async store({request}:HttpContextContract){
