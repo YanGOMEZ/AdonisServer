@@ -14,6 +14,8 @@ export default class UsuariosController {
         return user
     }
 
+    //SOY COMENT
+
     //CREAR NUEVO USUARIO
     public async store({request}:HttpContextContract){
         const email = request.input('email');
