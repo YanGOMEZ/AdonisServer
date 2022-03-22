@@ -2,35 +2,60 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Autor from 'App/Models/Autor';
 
 export default class AutorsController {
-    public async index({}:HttpContextContract){
-        const autor = await Autor.query()
-        return autor
+    public async index({response}:HttpContextContract){
+        try{
+            const autor = await Autor.query()
+            return autor
+        }
+        catch{
+            response.badRequest('ERROR AL MOSTRAR')
+        }
     }
 
-    public async Bautor({params}:HttpContextContract){
-        const autor = await Autor.query().where('id', params.id)
-        return autor
+    public async Bautor({params, response}:HttpContextContract){
+        try{
+            const autor = await Autor.query().where('id', params.id)
+            return autor
+        }
+        catch{
+            response.badRequest('ERROR AL MOSTRAR')
+        }
     }
 
     //CREAR NUEVO AUTOR
-    public async store({request}:HttpContextContract){
-        const nombre = request.input('nombre');
-        const autor = await Autor.create({nombre});
-        return autor
+    public async store({request, response}:HttpContextContract){
+        try{
+            const nombre = request.input('nombre');
+            const autor = await Autor.create({nombre});
+            return autor
+        }
+        catch{
+            response.badRequest('ERROR AL GUARDAR EL AUTOR')
+        }
     }
 
     //ACTUALIZAR AUTOR
-    public async update({request, params}:HttpContextContract){
-        const autor = await Autor.findOrFail(params.id)
-        autor.nombre = request.input('nombre');
-        await autor.save();
-        return autor
+    public async update({request, params, response}:HttpContextContract){
+        try{
+            const autor = await Autor.findOrFail(params.id)
+            autor.nombre = request.input('nombre');
+            await autor.save();
+            return autor
+        }
+        catch{
+            response.badRequest('ERROR AL ACTUALIZAR EL AUTOR')
+        }
     }
 
     //ELIMINAR AUTOR
-    public async destroy({params}:HttpContextContract){
-        const autor = await Autor.findOrFail(params.id);
-        await autor.delete();
-        return autor
+    public async destroy({params, response}:HttpContextContract){
+        try{
+            const autor = await Autor.findOrFail(params.id);
+            await autor.delete();
+            return autor
+        }
+        catch{
+            response.badRequest('ERROR AL ELIMINAR EL AUTOR')
+        }
     }
 }

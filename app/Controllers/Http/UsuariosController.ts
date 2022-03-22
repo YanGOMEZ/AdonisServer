@@ -4,57 +4,92 @@ import usuario from "App/Models/usuario";
 
 export default class UsuariosController {
     //MOSTRAR USUARIOS
-    public async index({}:HttpContextContract){
-        const user = await usuario.query()
-        return user
+    public async index({response}:HttpContextContract){
+        try{
+            const user = await usuario.query()
+            return user
+        }
+        catch{
+            response.badRequest('ERROR AL BUSCAR TODOS LOS USUARIOS')
+        }
     }
 
-    public async Buser({params}:HttpContextContract){
-        const user = await usuario.query().where('id', params.id)
-        return user
+    public async Buser({params, response}:HttpContextContract){
+        try{
+            const user = await usuario.query().where('id', params.id)
+            return user
+        }
+        catch{
+            response.badRequest('ERROR AL BUSCAR')
+        }
     }
 
     //SOY COMEN
 
     //CREAR NUEVO USUARIO
-    public async store({request}:HttpContextContract){
-        const email = request.input('email');
-        const nombre = request.input('nombre');
-        const password = request.input('password');
-        const rol = request.input('rol')
-        const user = await usuario.create({nombre, email, password, rol});
-        return user
+    public async store({request, response}:HttpContextContract){
+        try{
+            const email = request.input('email');
+            const nombre = request.input('nombre');
+            const password = request.input('password');
+            const rol = request.input('rol')
+            const user = await usuario.create({nombre, email, password, rol});
+            return user
+        }
+        catch{
+            response.badRequest('ERROR AL ALMACENAR')
+        }
     }
 
     //ACTUALIZAR USUARIO
-    public async update({request, params}:HttpContextContract){
-        const user = await usuario.findOrFail(params.id)
-        user.nombre = request.input('nombre');
-        user.password = request.input('password');
-        await user.save();
-        return user
+    public async update({request, params, response}:HttpContextContract){
+        try{
+            const user = await usuario.findOrFail(params.id)
+            user.nombre = request.input('nombre');
+            user.password = request.input('password');
+            await user.save();
+            return user
+        }
+        catch{
+            response.badRequest('ERROR AL ACTUALIZAR')
+        }
     }
 
     //ACTUALIZAR USUARIO
-    public async updateRolToAdmin({params}:HttpContextContract){
-        const user = await usuario.findOrFail(params.id)
-        user.rol = 1
-        await user.save();
-        return user
+    public async updateRolToAdmin({params, response}:HttpContextContract){
+        try{
+            const user = await usuario.findOrFail(params.id)
+            user.rol = 1
+            await user.save();
+            return user
+        }
+        catch{
+            response.badRequest('ERROR AL ACTUALIZAR AL USUARIO A ADMIN')
+        }
     }
 
-    public async updateRolToUser({params}:HttpContextContract){
-        const user = await usuario.findOrFail(params.id)
-        user.rol = 2
-        await user.save();
-        return user
+    public async updateRolToUser({params, response}:HttpContextContract){
+        try{
+            const user = await usuario.findOrFail(params.id)
+            user.rol = 2
+            await user.save();
+            return user
+        }
+        catch{
+            response.badRequest('ERROR AL ACTUALIZAR EL ROL DE USUARIO A USUARIO')
+        }
     }
 
     //ELIMINAR USUARIO
-    public async destroy({params}:HttpContextContract){
-        const user = await usuario.findOrFail(params.id);
-        await user.delete();
-        return user
+    public async destroy({params, response}:HttpContextContract){
+        try{
+            const user = await usuario.findOrFail(params.id);
+            await user.delete();
+            return user
+        }
+        catch{
+            response.badRequest('ERROR AL ELIMINAR USUARIO')
+        }
     }
 
     //LOGIN USUARIO
