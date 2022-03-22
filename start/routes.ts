@@ -78,6 +78,7 @@ Route.group(()=>{
 
   //RUTA AUTH ADMIN
   Route.get('admin', 'UsuariosController.IsAdmin')
+  Route.get('admin2', 'UsuariosController.IsAdmin2')
 
   //RUTAS ROL
   Route.resource('rol', 'RolsController')

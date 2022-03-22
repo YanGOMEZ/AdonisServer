@@ -120,11 +120,28 @@ export default class UsuariosController {
             const user =  await auth.use('api').authenticate()
             if(user.rol == 1)
             {
-                return { id: user.id, admin: true}
+                return true
             }
             else
             {
-                return { id: user.id, admin: false}
+                return false
+            }
+        }
+        catch{
+            return response.badRequest('Usuario inexistente')
+        }
+    }
+
+    public async IsAdmin2({response, auth}){
+        try{
+            const user =  await auth.use('api').authenticate()
+            if(user.rol == 1)
+            {
+                return user.id
+            }
+            else
+            {
+                return user.id
             }
         }
         catch{
