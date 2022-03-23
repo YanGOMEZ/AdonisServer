@@ -18,7 +18,7 @@ export default class LibrosController {
             .innerJoin('pasillo', 'ubicacion.pasillo', 'pasillo.id')
             .innerJoin('estante', 'ubicacion.estante', 'estante.id')
             .select('libro.id','libro.titulo','libro.sinopsis','libro.portada','libro.stock','editorial.nombre as editorial', 'categoria.nombre as categoria',
-            'autor.nombre as autor', 'pasillo.pasillo', 'estante.estante')
+            'autor.nombre as autor','libro.ubicacion', 'pasillo.pasillo', 'estante.estante')
     
             return libro
         }
@@ -43,7 +43,7 @@ export default class LibrosController {
             .innerJoin('pasillo', 'ubicacion.pasillo', 'pasillo.id')
             .innerJoin('estante', 'ubicacion.estante', 'estante.id')
             .select('libro.id','libro.titulo','libro.sinopsis','libro.portada','libro.stock','editorial.nombre as editorial', 'categoria.nombre as categoria',
-            'autor.nombre as autor', 'pasillo.pasillo', 'estante.estante').where('libro.id', params.id)
+            'autor.nombre as autor','libro.ubicacion', 'pasillo.pasillo', 'estante.estante').where('libro.id', params.id)
     
             return libro
         }
@@ -64,7 +64,7 @@ export default class LibrosController {
             .innerJoin('pasillo', 'ubicacion.pasillo', 'pasillo.id')
             .innerJoin('estante', 'ubicacion.estante', 'estante.id')
             .select('libro.id','libro.titulo','libro.sinopsis','libro.portada','libro.stock','editorial.nombre as editorial', 'categoria.nombre as categoria',
-            'autor.nombre as autor', 'pasillo.pasillo', 'estante.estante').where('libro.titulo', 'like', '%'+nombre+'%')
+            'autor.nombre as autor','libro.ubicacion', 'pasillo.pasillo', 'estante.estante').where('libro.titulo', 'like', '%'+nombre+'%')
     
             return libro
         }
