@@ -77,8 +77,10 @@ export default class LibrosController {
     }
 
     //CREAR NUEVO AUTOR
-    public async store({request, response}:HttpContextContract){
+    public async store({request, response, auth}:HttpContextContract){
         try{
+            await auth.use('api').authenticate()
+            console.log(auth.use('api').user!)
             const titulo = request.input('titulo');
             const sinopsis = request.input('sinopsis');
             const portada = request.input('portada');
@@ -97,8 +99,10 @@ export default class LibrosController {
     }
 
     //ACTUALIZAR AUTOR
-    public async update({request, params, response}:HttpContextContract){
+    public async update({request, params, response, auth}:HttpContextContract){
         try{
+            await auth.use('api').authenticate()
+            console.log(auth.use('api').user!)
             const libro = await Libro.findOrFail(params.id)
             libro.titulo = request.input('titulo')
             libro.sinopsis = request.input('sinopsis')
@@ -117,8 +121,10 @@ export default class LibrosController {
     }
 
     //ELIMINAR AUTOR
-    public async destroy({params, response}:HttpContextContract){
+    public async destroy({params, response, auth}:HttpContextContract){
         try{
+            await auth.use('api').authenticate()
+            console.log(auth.use('api').user!)
             const libro = await Libro.findOrFail(params.id);
             await libro.delete();
             return libro

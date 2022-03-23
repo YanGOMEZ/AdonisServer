@@ -23,8 +23,10 @@ export default class RolsController {
     }
 
     //CREAR NUEVO AUTOR
-    public async store({request, response}:HttpContextContract){
+    public async store({request, response, auth}:HttpContextContract){
         try{
+            await auth.use('api').authenticate()
+            console.log(auth.use('api').user!)
             const rol = request.input('rol');
             const rolc = await Rol.create({rol});
             return rolc
@@ -35,8 +37,10 @@ export default class RolsController {
     }
 
     //ACTUALIZAR AUTOR
-    public async update({request, params, response}:HttpContextContract){
+    public async update({request, params, response, auth}:HttpContextContract){
         try{
+            await auth.use('api').authenticate()
+            console.log(auth.use('api').user!)
             const rol = await Rol.findOrFail(params.id)
             rol.rol = request.input('rol');
             await rol.save();
@@ -48,8 +52,10 @@ export default class RolsController {
     }
 
     //ELIMINAR AUTOR
-    public async destroy({params, response}:HttpContextContract){
+    public async destroy({params, response, auth}:HttpContextContract){
         try{
+            await auth.use('api').authenticate()
+            console.log(auth.use('api').user!)
             const rol = await Rol.findOrFail(params.id);
             await rol.delete();
             return rol

@@ -52,8 +52,10 @@ export default class PrestamosController {
     }
 
     //CREAR NUEVO AUTOR
-    public async store({request, response}:HttpContextContract){
+    public async store({request, response, auth}:HttpContextContract){
         try{
+            await auth.use('api').authenticate()
+            console.log(auth.use('api').user!)
             const libro = request.input('libro');
             const cliente = request.input('cliente');
             const Fecha_Entrega = request.input('fecha_entrega');
@@ -67,8 +69,10 @@ export default class PrestamosController {
     }
 
     //ACTUALIZAR AUTOR
-    public async update({params,response}:HttpContextContract){
+    public async update({params,response, auth}:HttpContextContract){
         try{
+            await auth.use('api').authenticate()
+            console.log(auth.use('api').user!)
             const prestamo = await Prestamo.findOrFail(params.id)
             prestamo.Entregado = 'SÍ'
             await prestamo.save();
@@ -80,8 +84,10 @@ export default class PrestamosController {
     }
 
     //ELIMINAR AUTOR
-    public async destroy({params, response}:HttpContextContract){
+    public async destroy({params, response, auth}:HttpContextContract){
         try{
+            await auth.use('api').authenticate()
+            console.log(auth.use('api').user!)
             const prestamo = await Prestamo.findOrFail(params.id);
             await prestamo.delete();
             return prestamo

@@ -23,8 +23,10 @@ export default class PasillosController {
     }
 
     //CREAR NUEVO AUTOR
-    public async store({request, response}:HttpContextContract){
+    public async store({request, response, auth}:HttpContextContract){
         try{
+            await auth.use('api').authenticate()
+            console.log(auth.use('api').user!)
             const pasillo = request.input('pasillo');
             const pas = await Pasillo.create({pasillo});
             return pas
@@ -35,8 +37,10 @@ export default class PasillosController {
     }
 
     //ACTUALIZAR AUTOR
-    public async update({request, params, response}:HttpContextContract){
+    public async update({request, params, response, auth}:HttpContextContract){
         try{
+            await auth.use('api').authenticate()
+            console.log(auth.use('api').user!)
             const pas = await Pasillo.findOrFail(params.id)
             pas.pasillo = request.input('pasillo');
             await pas.save();
@@ -48,8 +52,10 @@ export default class PasillosController {
     }
 
     //ELIMINAR AUTOR
-    public async destroy({params, response}:HttpContextContract){
+    public async destroy({params, response, auth}:HttpContextContract){
         try{
+            await auth.use('api').authenticate()
+            console.log(auth.use('api').user!)
             const pas = await Pasillo.findOrFail(params.id);
             await pas.delete();
             return pas

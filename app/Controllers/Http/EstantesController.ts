@@ -24,8 +24,10 @@ export default class EstantesController {
     }
 
     //CREAR NUEVO AUTOR
-    public async store({request, response}:HttpContextContract){
+    public async store({request, response, auth}:HttpContextContract){
         try{
+            await auth.use('api').authenticate()
+            console.log(auth.use('api').user!)
             const estante = request.input('estante');
             const est = await Estante.create({estante});
             return est
@@ -36,8 +38,10 @@ export default class EstantesController {
     }
 
     //ACTUALIZAR AUTOR
-    public async update({request, params, response}:HttpContextContract){
+    public async update({request, params, response, auth}:HttpContextContract){
         try{
+            await auth.use('api').authenticate()
+            console.log(auth.use('api').user!)
             const est = await Estante.findOrFail(params.id)
             est.estante = request.input('estante');
             await est.save();
@@ -49,8 +53,10 @@ export default class EstantesController {
     }
 
     //ELIMINAR AUTOR
-    public async destroy({params, response}:HttpContextContract){
+    public async destroy({params, response, auth}:HttpContextContract){
         try{
+            await auth.use('api').authenticate()
+            console.log(auth.use('api').user!)
             const est = await Estante.findOrFail(params.id);
             await est.delete();
             return est

@@ -23,8 +23,10 @@ export default class GenerosController {
     }
 
     //CREAR NUEVO AUTOR
-    public async store({request, response}:HttpContextContract){
+    public async store({request, response, auth}:HttpContextContract){
         try{
+            await auth.use('api').authenticate()
+            console.log(auth.use('api').user!)
             const nombre = request.input('nombre');
             const genero = await Genero.create({nombre});
             return genero
@@ -35,8 +37,10 @@ export default class GenerosController {
     }
 
     //ACTUALIZAR AUTOR
-    public async update({request, params, response}:HttpContextContract){
+    public async update({request, params, response, auth}:HttpContextContract){
         try{
+            await auth.use('api').authenticate()
+            console.log(auth.use('api').user!)
             const genero = await Genero.findOrFail(params.id)
             genero.nombre = request.input('nombre');
             await genero.save();
@@ -48,8 +52,10 @@ export default class GenerosController {
     }
 
     //ELIMINAR AUTOR
-    public async destroy({params, response}:HttpContextContract){
+    public async destroy({params, response, auth}:HttpContextContract){
         try{
+            await auth.use('api').authenticate()
+            console.log(auth.use('api').user!)
             const genero = await Genero.findOrFail(params.id);
             await genero.delete();
             return genero

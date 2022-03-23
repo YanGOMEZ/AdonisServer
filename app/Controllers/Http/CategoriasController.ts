@@ -23,8 +23,10 @@ export default class CategoriasController {
     }
 
     //CREAR NUEVO AUTOR
-    public async store({request, response}:HttpContextContract){
+    public async store({request, response, auth}:HttpContextContract){
         try{
+            await auth.use('api').authenticate()
+            console.log(auth.use('api').user!)
             const nombre = request.input('nombre');
             const categoria = await Categoria.create({nombre});
             return categoria
@@ -35,8 +37,10 @@ export default class CategoriasController {
     }
 
     //ACTUALIZAR AUTOR
-    public async update({request, params, response}:HttpContextContract){
+    public async update({request, params, response, auth}:HttpContextContract){
         try{
+            await auth.use('api').authenticate()
+            console.log(auth.use('api').user!)
             const categoria = await Categoria.findOrFail(params.id)
             categoria.nombre = request.input('nombre');
             await categoria.save();
@@ -48,8 +52,10 @@ export default class CategoriasController {
     }
 
     //ELIMINAR AUTOR
-    public async destroy({params, response}:HttpContextContract){
+    public async destroy({params, response, auth}:HttpContextContract){
         try{
+            await auth.use('api').authenticate()
+            console.log(auth.use('api').user!)
             const categoria = await Categoria.findOrFail(params.id);
             await categoria.delete();
             return categoria

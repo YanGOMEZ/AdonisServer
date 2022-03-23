@@ -23,8 +23,10 @@ export default class EditorialsController {
     }
 
     //CREAR NUEVO AUTOR
-    public async store({request, response}:HttpContextContract){
+    public async store({request, response, auth}:HttpContextContract){
         try{
+            await auth.use('api').authenticate()
+            console.log(auth.use('api').user!)
             const nombre = request.input('nombre');
             const editorial = await Editorial.create({nombre});
             return editorial
@@ -35,8 +37,10 @@ export default class EditorialsController {
     }
 
     //ACTUALIZAR AUTOR
-    public async update({request, params, response}:HttpContextContract){
+    public async update({request, params, response, auth}:HttpContextContract){
         try{
+            await auth.use('api').authenticate()
+            console.log(auth.use('api').user!)
             const editorial = await Editorial.findOrFail(params.id)
             editorial.nombre = request.input('nombre');
             await editorial.save();
@@ -48,8 +52,10 @@ export default class EditorialsController {
     }
 
     //ELIMINAR AUTOR
-    public async destroy({params, response}:HttpContextContract){
+    public async destroy({params, response, auth}:HttpContextContract){
         try{
+            await auth.use('api').authenticate()
+            console.log(auth.use('api').user!)
             const editorial = await Editorial.findOrFail(params.id);
             await editorial.delete();
             return editorial
