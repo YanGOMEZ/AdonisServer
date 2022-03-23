@@ -36,14 +36,17 @@ export default class LibrosController {
         //.select('libro.titulo','editorial.nombre')
 
         try{
-            const libro = await Database.query().from('libro').innerJoin('editorial', 'editorial.id', 'libro.editorial')
+            const libro = await Database.query().from('libro')
+            .innerJoin('editorial', 'editorial.id', 'libro.editorial')
             .innerJoin('categoria', 'categoria.id', 'libro.categoria')
             .innerJoin('autor', 'autor.id', 'libro.autor')
             .innerJoin('ubicacion', 'ubicacion.id', 'libro.ubicacion')
             .innerJoin('pasillo', 'ubicacion.pasillo', 'pasillo.id')
             .innerJoin('estante', 'ubicacion.estante', 'estante.id')
-            .select('libro.id','libro.titulo','libro.sinopsis','libro.portada','libro.stock','editorial.nombre as editorial', 'categoria.nombre as categoria',
-            'autor.nombre as autor','libro.ubicacion', 'pasillo.pasillo', 'estante.estante').where('libro.id', params.id)
+            .select('libro.id','libro.titulo','libro.sinopsis','libro.portada',
+            'libro.stock','editorial.nombre as editorial', 'categoria.nombre as categoria',
+            'autor.nombre as autor','libro.ubicacion', 'pasillo.pasillo', 'estante.estante')
+            .where('libro.id', params.id)
     
             return libro
         }

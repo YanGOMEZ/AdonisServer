@@ -27,8 +27,10 @@ export default class UsuariosController {
     //SOY COMEN
 
     //CREAR NUEVO USUARIO
-    public async store({request, response}:HttpContextContract){
+    public async store({request, response, auth}:HttpContextContract){
         try{
+            await auth.use('api').authenticate()
+            console.log(auth.use('api').user!)
             const email = request.input('email');
             const nombre = request.input('nombre');
             const password = request.input('password');
@@ -42,8 +44,10 @@ export default class UsuariosController {
     }
 
     //ACTUALIZAR USUARIO
-    public async update({request, params, response}:HttpContextContract){
+    public async update({request, params, response, auth}:HttpContextContract){
         try{
+            await auth.use('api').authenticate()
+            console.log(auth.use('api').user!)
             const user = await usuario.findOrFail(params.id)
             user.nombre = request.input('nombre');
             user.password = request.input('password');
@@ -56,8 +60,10 @@ export default class UsuariosController {
     }
 
     //ACTUALIZAR USUARIO
-    public async updateRolToAdmin({params, response}:HttpContextContract){
+    public async updateRolToAdmin({params, response, auth}:HttpContextContract){
         try{
+            await auth.use('api').authenticate()
+            console.log(auth.use('api').user!)
             const user = await usuario.findOrFail(params.id)
             user.rol = 1
             await user.save();
@@ -68,8 +74,10 @@ export default class UsuariosController {
         }
     }
 
-    public async updateRolToUser({params, response}:HttpContextContract){
+    public async updateRolToUser({params, response, auth}:HttpContextContract){
         try{
+            await auth.use('api').authenticate()
+            console.log(auth.use('api').user!)
             const user = await usuario.findOrFail(params.id)
             user.rol = 2
             await user.save();
@@ -81,8 +89,10 @@ export default class UsuariosController {
     }
 
     //ELIMINAR USUARIO
-    public async destroy({params, response}:HttpContextContract){
+    public async destroy({params, response, auth}:HttpContextContract){
         try{
+            await auth.use('api').authenticate()
+            console.log(auth.use('api').user!)
             const user = await usuario.findOrFail(params.id);
             await user.delete();
             return user

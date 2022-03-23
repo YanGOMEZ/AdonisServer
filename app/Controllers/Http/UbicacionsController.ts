@@ -52,8 +52,10 @@ export default class UbicacionsController {
     }
 
     //CREAR NUEVO AUTOR
-    public async store({request, response}:HttpContextContract){
+    public async store({request, response, auth}:HttpContextContract){
         try{
+            await auth.use('api').authenticate()
+            console.log(auth.use('api').user!)
             const pasillo = request.input('pasillo');
             const estante = request.input('estante');
             const ubicacion = await Ubicacion.create({pasillo, estante})
@@ -65,8 +67,10 @@ export default class UbicacionsController {
     }
 
     //ACTUALIZAR AUTOR
-    public async update({request, params, response}:HttpContextContract){
+    public async update({request, params, response, auth}:HttpContextContract){
         try{
+            await auth.use('api').authenticate()
+            console.log(auth.use('api').user!)
             const ubicacion = await Ubicacion.findOrFail(params.id)
             ubicacion.pasillo = request.input('pasillo')
             ubicacion.estante = request.input('estante')
@@ -79,8 +83,10 @@ export default class UbicacionsController {
     }
 
     //ELIMINAR AUTOR
-    public async destroy({params, response}:HttpContextContract){
+    public async destroy({params, response, auth}:HttpContextContract){
         try{
+            await auth.use('api').authenticate()
+            console.log(auth.use('api').user!)
             const ubicacion = await Ubicacion.findOrFail(params.id);
             await ubicacion.delete();
             return ubicacion
