@@ -70,6 +70,8 @@ export default class PrestamosController {
 
             pre.save().then(() => console.log('creado'))
 
+            mongoose.connection.close()
+
             return prestamo
         }
         catch{
