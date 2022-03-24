@@ -68,12 +68,6 @@ export default class PrestamosController {
 
             console.log('CONEXIÓN CON EXITO')
 
-            //const prestamos = mongoose.model('prestamos',new Schema(
-              //  {id: Number, libro_id: Number, id_cliente: Number, Fecha_Entrega: Date, Entregado: String}
-            //))
-
-            //console.log('PASÉ DE LA CREACIÓN DEL MODELO')
-
             const pre = new PrestamoMongo.prestamos({id: prestamo.id, libro_id: prestamo.libro, 
             id_cliente: prestamo.cliente,created_at: prestamo.createdAt, Fecha_Entrega: prestamo.Fecha_Entrega, 
             Entregado: prestamo.Entregado})
@@ -99,6 +93,23 @@ export default class PrestamosController {
             const prestamo = await Prestamo.findOrFail(params.id)
             prestamo.Entregado = 'SÍ'
             await prestamo.save();
+
+            await mongoose.connect('mongodb+srv://YAN:P4nDAJH@utt20170016.kcjvg.mongodb.net/booksite?retryWrites=true&w=majority')
+
+            console.log('CONEXIÓN CON EXITO')
+
+            const pre = PrestamoMongo.prestamos.find({"id": params.id})
+
+            console.log('ENCONTRÉ EL REGISTRO')
+
+            pre.Entregado = 'SÍ'
+
+            await pre.save().then(() => console.log('CAMBIO REALIZADO'))
+
+            await mongoose.connection.close()
+
+            console.log('CERRÉ SESIÓN CON ÉXITO')
+
             return prestamo
         }
         catch{
