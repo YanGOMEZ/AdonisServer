@@ -63,14 +63,14 @@ export default class PrestamosController {
             const prestamo = await Prestamo.create({libro, cliente, Fecha_Entrega, Entregado});
 
             const mongoose = require('mongoose')
-            mongoose.connect('mongodb+srv://YAN:P4nDAJH@utt20170016.kcjvg.mongodb.net/booksite?retryWrites=true&w=majority')
-            const prestamos = mongoose.model('prestamos',{id: Number, libro_id: Number, id_cliente: Number, Fecha_Entrega: Date, Entregado: String})
+            const db = mongoose.connect('mongodb+srv://YAN:P4nDAJH@utt20170016.kcjvg.mongodb.net/booksite?retryWrites=true&w=majority')
+            const prestamos = db.model('prestamos',{id: Number, libro_id: Number, id_cliente: Number, Fecha_Entrega: Date, Entregado: String})
 
             const pre = new prestamos({id: prestamo.id, libro_id: prestamo.libro, id_cliente: prestamo.cliente, Fecha_Entrega: prestamo.Fecha_Entrega, Entregado: prestamo.Entregado})
 
             pre.save().then(() => console.log('creado'))
 
-            mongoose.destroy()
+            db.close()
 
             return prestamo
         }
