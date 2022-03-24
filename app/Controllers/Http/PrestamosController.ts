@@ -1,7 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Database from '@ioc:Adonis/Lucid/Database'
 import Prestamo from 'App/Models/Prestamo';
-import mongoose, { Schema } from 'mongoose';
 
 export default class PrestamosController {
     public async index({response}:HttpContextContract){
@@ -65,11 +64,9 @@ export default class PrestamosController {
 
             const mongoose = require('mongoose')
             mongoose.connect('mongodb+srv://YAN:P4nDAJH@utt20170016.kcjvg.mongodb.net/booksite?retryWrites=true&w=majority')
-            const prestamos = mongoose.model('prestamos',{id: Number, libro_id: Number, id_cliente: Number
-            , Fecha_Entrega: Date, Entregado: String})
+            const prestamos = mongoose.model('prestamos',{id: Number, libro_id: Number, id_cliente: Number, Fecha_Entrega: Date, Entregado: String})
 
-            const pre = new prestamos({id: prestamo.id, libro_id: prestamo.libro, id_cliente: prestamo.cliente
-            , Fecha_Entrega: prestamo.Fecha_Entrega, Entregado: prestamo.Entregado})
+            const pre = new prestamos({id: prestamo.id, libro_id: prestamo.libro, id_cliente: prestamo.cliente, Fecha_Entrega: prestamo.Fecha_Entrega, Entregado: prestamo.Entregado})
 
             pre.save().then(() => console.log('creado'))
 
