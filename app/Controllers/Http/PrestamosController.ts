@@ -75,7 +75,7 @@ export default class PrestamosController {
             //console.log('PASÉ DE LA CREACIÓN DEL MODELO')
 
             const pre = new PrestamoMongo.prestamos({id: prestamo.id, libro_id: prestamo.libro, 
-            id_cliente: prestamo.cliente, Fecha_Entrega: prestamo.Fecha_Entrega, 
+            id_cliente: prestamo.cliente,created_at: prestamo.createdAt, Fecha_Entrega: prestamo.Fecha_Entrega, 
             Entregado: prestamo.Entregado})
 
             await pre.save().then(() => console.log('creado'))
