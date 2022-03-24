@@ -120,6 +120,19 @@ export default class PrestamosController {
             console.log(auth.use('api').user!)
             const prestamo = await Prestamo.findOrFail(params.id);
             await prestamo.delete();
+
+            await mongoose.connect('mongodb+srv://YAN:P4nDAJH@utt20170016.kcjvg.mongodb.net/booksite?retryWrites=true&w=majority')
+
+            console.log('CONEXIÓN CON EXITO')
+
+            await PrestamoMongo.prestamos.deleteOne({"id": params.id})
+
+            console.log('PRESTAMO ELIMINADO')
+
+            await mongoose.connection.close()
+
+            console.log('CERRÉ SESIÓN CON ÉXITO')
+
             return prestamo
         }
         catch{
