@@ -72,7 +72,7 @@ export default class PrestamosController {
 
             await pre.save().then(() => console.log('creado'))
 
-            await mongoose.disconnect()
+            await mongoose.connection.close(true)
 
             return prestamo
         }
