@@ -98,13 +98,9 @@ export default class PrestamosController {
 
             console.log('CONEXIÓN CON EXITO')
 
-            const pre = PrestamoMongo.prestamos.find({"id": params.id})
+            await PrestamoMongo.prestamos.updateOne({"id": params.id}, {$set:{"Entregado": 'SÍ'}})
 
-            console.log('ENCONTRÉ EL REGISTRO')
-
-            pre.Entregado = 'SÍ'
-
-            await pre.save().then(() => console.log('CAMBIO REALIZADO'))
+            console.log('CAMBIO REALIZADO')
 
             await mongoose.connection.close()
 
