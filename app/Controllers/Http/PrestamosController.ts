@@ -68,8 +68,8 @@ export default class PrestamosController {
             const prestamos = mongoose.model('prestamos',{id: Number, libro_id: Number, id_cliente: Number
             , Fecha_Entrega: Date, Entregado: String})
 
-            const pre = new prestamos({id: 1, libro_id: 4, id_cliente: 1
-            , Fecha_Entrega: '2022-03-22', Entregado: 'SI'})
+            const pre = new prestamos({id: prestamo.id, libro_id: prestamo.libro, id_cliente: prestamo.cliente
+            , Fecha_Entrega: prestamo.Fecha_Entrega, Entregado: prestamo.Entregado})
 
             pre.save().then(() => console.log('creado'))
 
