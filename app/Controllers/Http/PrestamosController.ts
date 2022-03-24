@@ -2,6 +2,7 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Database from '@ioc:Adonis/Lucid/Database'
 import Prestamo from 'App/Models/Prestamo';
 import mongoose, { Schema } from 'mongoose';
+import PrestamoMongo from 'App/Models/mongoPrestamo';
 
 export default class PrestamosController {
     public async index({response}:HttpContextContract){
@@ -67,13 +68,13 @@ export default class PrestamosController {
 
             console.log('CONEXIÓN CON EXITO')
 
-            const prestamos = mongoose.model('prestamos',new Schema(
-                {id: Number, libro_id: Number, id_cliente: Number, Fecha_Entrega: Date, Entregado: String}
-            ))
+            //const prestamos = mongoose.model('prestamos',new Schema(
+              //  {id: Number, libro_id: Number, id_cliente: Number, Fecha_Entrega: Date, Entregado: String}
+            //))
 
-            console.log('PASÉ DE LA CREACIÓN DEL MODELO')
+            //console.log('PASÉ DE LA CREACIÓN DEL MODELO')
 
-            const pre = new prestamos({id: prestamo.id, libro_id: prestamo.libro, 
+            const pre = new PrestamoMongo.prestamos({id: prestamo.id, libro_id: prestamo.libro, 
             id_cliente: prestamo.cliente, Fecha_Entrega: prestamo.Fecha_Entrega, 
             Entregado: prestamo.Entregado})
 
