@@ -125,11 +125,12 @@ export default class LibrosController {
         try{
             await auth.use('api').authenticate()
             console.log(auth.use('api').user!)
+
+            await Database.query().delete().from('prestamos').where('libro', params.id)
+
             const libro = await Libro.findOrFail(params.id);
             await libro.delete();
 
-            await Database.query().delete().from('prestamos').where('libro', params.id)
-            
             return libro
         }
         catch{
