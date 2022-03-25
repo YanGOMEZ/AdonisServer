@@ -176,10 +176,7 @@ export default class PrestamosController {
 
             console.log('CERRÉ SESIÓN CON ÉXITO')
 
-            console.log('STOCK', prestamo.stock)
-            console.log('EN PRESTAMO', pes2.Status)
-
-            return response.json({p:prestamo.stock, s:pes2.Status})
+            return response.json({p:prestamo.stock, s:pes2})
 
         }
         catch{
