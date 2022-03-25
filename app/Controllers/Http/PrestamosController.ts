@@ -166,7 +166,7 @@ export default class PrestamosController {
 
             console.log('CERRÉ SESIÓN CON ÉXITO')
 
-            if(prestamo.stock == pes2){
+            if(prestamo.stock == pes2.Entregado){
                 return false //AQUI SIGNIFICA QUE NO HAY STOCK
             }
             else{
