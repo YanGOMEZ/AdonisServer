@@ -171,7 +171,7 @@ export default class PrestamosController {
                 return false
             }
             else{
-                true
+                return true
             }
         }
         catch{
