@@ -171,11 +171,12 @@ export default class UsuariosController {
     public async session({response, auth}){
         try{
             const user = await auth.use('api').authenticate()
-            if(user == null){
-                return false
+            console.log('VALOR', user)
+            if(user != null){
+                return true
             }
             else{
-                return true
+                return false
             }
         }
         catch{
