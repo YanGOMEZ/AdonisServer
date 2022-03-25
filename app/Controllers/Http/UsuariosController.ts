@@ -167,21 +167,4 @@ export default class UsuariosController {
             return response.badRequest('Usuario inexistente')
         }
     }
-
-    public async session({response, auth}){
-        try{
-            const user = await auth.use('api').authenticate()
-            console.log('VALOR', user)
-            if(user != null){
-                return response.json({"a": user, "es": true})
-            }
-            else{
-                return response.json({"a": user, "es": false})
-            }
-        }
-        catch{
-            return response.badRequest('ERROR DE COMPROBACIÓN')
-        }
-    }
-
 }
