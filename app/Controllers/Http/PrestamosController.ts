@@ -3,6 +3,7 @@ import Database from '@ioc:Adonis/Lucid/Database'
 import Prestamo from 'App/Models/Prestamo';
 import mongoose, { Schema } from 'mongoose';
 import PrestamoMongo from 'App/Models/mongoPrestamo';
+import Libro from 'App/Models/Libro'
 
 export default class PrestamosController {
     public async index({response}:HttpContextContract){
@@ -139,4 +140,43 @@ export default class PrestamosController {
             response.badRequest('ERROR AL ELIMINAR EL PRESTAMO')
         }
     }
+
+    public async stock({params, response, auth}){
+        try{
+            await auth.use('api').authenticate()
+            console.log(auth.use('api').user!)
+            const prestamo = await Libro.findOrFail(params.id)
+
+            await mongoose.connect('mongodb+srv://YAN:P4nDAJH@utt20170016.kcjvg.mongodb.net/booksite?retryWrites=true&w=majority')
+
+            console.log('CONEXIÓN CON EXITO')
+
+            //AQUÍ HACE EL COUNT
+            const pes2 = await PrestamoMongo.prestamos.aggregate(
+                [{$match: {
+                    libro_id: params.id
+                   }}, {$match: {
+                    Entregado: 'NO'
+                   }}, {$count: 'Entregado'}]
+            )
+
+            console.log('BÚSQUEDA EN MONGO EXITOSA')
+
+            await mongoose.connection.close()
+
+            console.log('CERRÉ SESIÓN CON ÉXITO')
+
+            if(prestamo.stock == pes2){
+                return false //AQUI SIGNIFICA QUE NO HAY STOCK
+            }
+            else{
+                return true //AQUÍ SIGNIFICA QUE SI HAY STOCK
+            }
+
+        }
+        catch{
+            response.badRequest('ERROR AL MOSTRAR')
+        }
+    }
+
 }

@@ -112,6 +112,7 @@ Route.group(()=>{
 
   //RUTAS LIBRO
   Route.resource('libro', 'LibrosController')
+  Route.get('libroStock/:id', 'LibrosController.stock')
 
   //RUTAS LIBRO GENERO
   Route.resource('libroGenero', 'LibrogenerosController')
