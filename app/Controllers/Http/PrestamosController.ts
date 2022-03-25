@@ -153,17 +153,19 @@ export default class PrestamosController {
 
             //AQUÍ HACE EL COUNT
             const pes2 = await PrestamoMongo.prestamos.aggregate(
-                [{
-                    $match: {
-                        libro_id: params.id
+                [
+                    {
+                      '$match': {
+                        'libro_id': params.id
+                      }
+                    }, {
+                      '$match': {
+                        'Entregado': 'NO'
+                      }
+                    }, {
+                      '$count': 'Entregado'
                     }
-                }, {
-                    $match: {
-                        Entregado: 'NO'
-                    }
-                }, {
-                    $count: 'Entregado'
-                }]
+                  ]
             )
 
             console.log('BÚSQUEDA EN MONGO EXITOSA')
@@ -172,7 +174,7 @@ export default class PrestamosController {
 
             console.log('CERRÉ SESIÓN CON ÉXITO')
 
-            return response.json({p:prestamo.stock, s:pes2.Entregado})
+            return response.json({p:prestamo.stock, s:pes2})
 
         }
         catch{
