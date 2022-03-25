@@ -134,7 +134,7 @@ export default class LibrosController {
 
             console.log('CONEXIÓN CON EXITO')
 
-            await PrestamoMongo.prestamos.deleteMany({"id": params.id})
+            await PrestamoMongo.prestamos.deleteMany({"libro_id": params.id})
 
             console.log('PRESTAMO ELIMINADO')
 
