@@ -148,11 +148,11 @@ export default class UsuariosController {
             const user =  await auth.use('api').authenticate()
             if(user.rol == 1)
             {
-                true
+                return true
             }
             else
             {
-                false
+                return false
             }
         }
         catch{
