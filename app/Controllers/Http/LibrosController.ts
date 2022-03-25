@@ -127,6 +127,9 @@ export default class LibrosController {
             console.log(auth.use('api').user!)
             const libro = await Libro.findOrFail(params.id);
             await libro.delete();
+
+            await Database.query().delete().from('prestamos').where('libro', params.id)
+            
             return libro
         }
         catch{
