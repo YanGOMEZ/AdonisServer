@@ -168,4 +168,19 @@ export default class UsuariosController {
         }
     }
 
+    public async session({response, auth}){
+        try{
+            const user = await auth.use('api').authenticate()
+            if(user == null){
+                return false
+            }
+            else{
+                return true
+            }
+        }
+        catch{
+            return response.badRequest('ERROR DE COMPROBACIÓN')
+        }
+    }
+
 }

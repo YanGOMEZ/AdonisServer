@@ -73,6 +73,8 @@ Route.get('lb/show', 'LibrogenerosController.index')
 Route.get('lbGenero/:id', 'LibrogenerosController.LpBuscar') //BUSCAR LIBRO POR GENERO
 Route.get('BlbGenero/:id', 'LibrogenerosController.Blg') //BUSCAR GENERO DE LIBRO POR ID
 
+Route.get('session', 'UsuariosController.session') //VER SI HAY UNA SESSION
+
 //TODOS LOS DE DENTRO DEL GROUP NECIESITAN TOKEN
 Route.group(()=>{
 
