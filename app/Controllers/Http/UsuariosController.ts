@@ -2,6 +2,8 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 import usuario from "App/Models/usuario";
 import Database from '@ioc:Adonis/Lucid/Database';
+import mongoose from 'mongoose'
+import PrestamoMongo from 'App/Models/mongoPrestamo'
 
 export default class UsuariosController {
     //MOSTRAR USUARIOS
@@ -94,6 +96,18 @@ export default class UsuariosController {
         try{
 
             await Database.query().delete().from('prestamos').where('cliente', params.id)
+
+            await mongoose.connect('mongodb+srv://YAN:P4nDAJH@utt20170016.kcjvg.mongodb.net/booksite?retryWrites=true&w=majority')
+
+            console.log('CONEXIÓN CON EXITO')
+
+            await PrestamoMongo.prestamos.deleteMany({"id_cliente": params.id})
+
+            console.log('PRESTAMO ELIMINADO')
+
+            await mongoose.connection.close()
+
+            console.log('CERRÉ SESIÓN CON ÉXITO')
 
             await auth.use('api').authenticate()
             console.log(auth.use('api').user!)
