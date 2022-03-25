@@ -153,11 +153,21 @@ export default class PrestamosController {
 
             //AQUÍ HACE EL COUNT
             const pes2 = await PrestamoMongo.prestamos.aggregate(
-                [{$match: {
-                    libro_id: params.id
-                   }}, {$match: {
-                    Entregado: 'NO'
-                   }}, {$count: 'Entregado'}]
+                [{
+                    $match: {
+                        libro_id: params.id
+                    }
+                }, {
+                    $match: {
+                        Entregado: 'NO'
+                    }
+                }, {
+                    $count: 'Entregado'
+                }, {
+                    $project: {
+                        Status: '$Entregado'
+                    }
+                }]
             )
 
             console.log('BÚSQUEDA EN MONGO EXITOSA')
@@ -167,9 +177,9 @@ export default class PrestamosController {
             console.log('CERRÉ SESIÓN CON ÉXITO')
 
             console.log('STOCK', prestamo.stock)
-            console.log('EN PRESTAMO', pes2.Entregado)
+            console.log('EN PRESTAMO', pes2.Status)
 
-            if(prestamo.stock == pes2.Entregado){
+            if(prestamo.stock == pes2.Status){
                 return false //AQUI SIGNIFICA QUE NO HAY STOCK
             }
             else{
