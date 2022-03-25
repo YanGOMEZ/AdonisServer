@@ -151,7 +151,7 @@ export default class PrestamosController {
 
             console.log('CONEXIÓN CON EXITO')
             //AQUÍ HACE EL COUNT
-            const pes2 = await PrestamoMongo.prestamos.find(
+            const pes2 = await PrestamoMongo.prestamos.aggregation(
                 [{$match: {
                     libro_id: 1,
                     Entregado: 'NO'
