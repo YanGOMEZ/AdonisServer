@@ -168,10 +168,10 @@ export default class PrestamosController {
             console.log('CERRÉ SESIÓN CON ÉXITO')
 
             if(valor >= prestamo.stock){
-                return false
+                return response.status(200).json({"admin": false})
             }
             else{
-                return true
+                return response.status(200).json({"admin": true})
             }
         }
         catch{
