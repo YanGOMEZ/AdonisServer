@@ -163,10 +163,6 @@ export default class PrestamosController {
                     }
                 }, {
                     $count: 'Entregado'
-                }, {
-                    $project: {
-                        Status: '$Entregado'
-                    }
                 }]
             )
 
