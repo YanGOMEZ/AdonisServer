@@ -1,6 +1,8 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Database from '@ioc:Adonis/Lucid/Database'
 import Libro from 'App/Models/Libro'
+import mongoose from 'mongoose'
+import PrestamoMongo from 'App/Models/mongoPrestamo'
 
 export default class LibrosController {
     public async index({response}:HttpContextContract){
@@ -127,6 +129,18 @@ export default class LibrosController {
             console.log(auth.use('api').user!)
 
             await Database.query().delete().from('prestamos').where('libro', params.id)
+
+            await mongoose.connect('mongodb+srv://YAN:P4nDAJH@utt20170016.kcjvg.mongodb.net/booksite?retryWrites=true&w=majority')
+
+            console.log('CONEXIÓN CON EXITO')
+
+            await PrestamoMongo.prestamos.deleteMany({"id": params.id})
+
+            console.log('PRESTAMO ELIMINADO')
+
+            await mongoose.connection.close()
+
+            console.log('CERRÉ SESIÓN CON ÉXITO')
 
             const libro = await Libro.findOrFail(params.id);
             await libro.delete();
