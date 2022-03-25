@@ -151,15 +151,15 @@ export default class PrestamosController {
 
             console.log('CONEXIÓN CON EXITO')
             //AQUÍ HACE EL COUNT
-            const pes2 = await PrestamoMongo.prestamos.aggregation(
-                [{$match: {
-                    libro_id: 1,
-                    Entregado: 'NO'
-                   }}, {$count: 'Entregado'}]
-            )
+            const pes2 = await PrestamoMongo.prestamos.find({"libro_id":params.id, "Entregado":"NO"})
 
-            //const pes3 = pes2.find({'Entregado':"NO"})
-            //const pes4 = pes3.find({$count:{}})
+            var valor: number
+
+            valor = 0
+            
+            pes2.forEach(element => {
+                valor = valor+1
+            });
 
             console.log('BÚSQUEDA EN MONGO EXITOSA')
 
@@ -167,8 +167,7 @@ export default class PrestamosController {
 
             console.log('CERRÉ SESIÓN CON ÉXITO')
 
-            return response.json({p:prestamo.stock, s:pes2})
-
+            return response.json({p:prestamo.stock, s:valor})
         }
         catch{
             response.badRequest('ERROR AL MOSTRAR')
