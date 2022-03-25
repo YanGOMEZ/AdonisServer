@@ -112,7 +112,6 @@ Route.group(()=>{
 
   //RUTAS LIBRO
   Route.resource('libro', 'LibrosController')
-  Route.get('libroStock/:id', 'LibrosController.stock')
 
   //RUTAS LIBRO GENERO
   Route.resource('libroGenero', 'LibrogenerosController')
@@ -121,5 +120,6 @@ Route.group(()=>{
   Route.resource('prestamo', 'PrestamosController') //LOS PRESTAMOS SOLO SE PUEDEN VER POR TOKEN
   Route.get('prestamoid/:id', 'PrestamosController.Busprest') //BUSCAR PRESTAMO POR ID DE PRESTAMO +
   Route.get('prestamoUser/:id', 'PrestamosController.Usprest') //VER PRESTAMOS DE UN USUARIO +
+  Route.get('libroStock/:id', 'PrestamosController.stock')
   
 }).prefix('api').middleware('auth');
