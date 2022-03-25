@@ -173,10 +173,10 @@ export default class UsuariosController {
             const user = await auth.use('api').authenticate()
             console.log('VALOR', user)
             if(user != null){
-                return true
+                return response.json({"a": user, "es": true})
             }
             else{
-                return false
+                return response.json({"a": user, "es": false})
             }
         }
         catch{
