@@ -179,7 +179,7 @@ export default class PrestamosController {
             console.log('STOCK', prestamo.stock)
             console.log('EN PRESTAMO', pes2.Status)
 
-            if(prestamo.stock == pes2.Status){
+            if(prestamo.stock > pes2.Status){
                 return false //AQUI SIGNIFICA QUE NO HAY STOCK
             }
             else{
