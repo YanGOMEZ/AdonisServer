@@ -68,26 +68,17 @@ export default class UsuariosController {
             await auth.use('api').authenticate()
             console.log(auth.use('api').user!)
             const user = await usuario.findOrFail(params.id)
-            user.rol = 1
+            if(user.rol == 1){
+                user.rol = 2
+            }
+            else if(user.rol == 2){
+                user.rol = 1
+            }
             await user.save();
             return user
         }
         catch{
             response.badRequest('ERROR AL ACTUALIZAR AL USUARIO A ADMIN')
-        }
-    }
-
-    public async updateRolToUser({params, response, auth}:HttpContextContract){
-        try{
-            await auth.use('api').authenticate()
-            console.log(auth.use('api').user!)
-            const user = await usuario.findOrFail(params.id)
-            user.rol = 2
-            await user.save();
-            return user
-        }
-        catch{
-            response.badRequest('ERROR AL ACTUALIZAR EL ROL DE USUARIO A USUARIO')
         }
     }
 
