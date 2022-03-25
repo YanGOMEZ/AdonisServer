@@ -1,6 +1,7 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 import usuario from "App/Models/usuario";
+import Database from '@ioc:Adonis/Lucid/Database';
 
 export default class UsuariosController {
     //MOSTRAR USUARIOS
@@ -91,6 +92,9 @@ export default class UsuariosController {
     //ELIMINAR USUARIO
     public async destroy({params, response, auth}:HttpContextContract){
         try{
+
+            await Database.query().delete().from('prestamos').where('cliente', params.id)
+
             await auth.use('api').authenticate()
             console.log(auth.use('api').user!)
             const user = await usuario.findOrFail(params.id);

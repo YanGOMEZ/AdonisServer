@@ -1,7 +1,7 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Database from '@ioc:Adonis/Lucid/Database'
 import Prestamo from 'App/Models/Prestamo';
-import mongoose, { Schema } from 'mongoose';
+import mongoose from 'mongoose';
 import PrestamoMongo from 'App/Models/mongoPrestamo';
 import Libro from 'App/Models/Libro'
 
