@@ -150,9 +150,9 @@ export default class PrestamosController {
             await mongoose.connect('mongodb+srv://YAN:P4nDAJH@utt20170016.kcjvg.mongodb.net/booksite?retryWrites=true&w=majority')
 
             console.log('CONEXIÓN CON EXITO')
-
             //AQUÍ HACE EL COUNT
-            const pes2 = await PrestamoMongo.prestamos.find({"libro_id":params.id, "Entregado":"NO", $count:{}})
+            const pes2 = await PrestamoMongo.prestamos.find({"libro_id":params.id, "Entregado":"NO",$sum:1})
+            const can = pes2.size();
             //const pes3 = pes2.find({'Entregado':"NO"})
             //const pes4 = pes3.find({$count:{}})
 
@@ -162,7 +162,7 @@ export default class PrestamosController {
 
             console.log('CERRÉ SESIÓN CON ÉXITO')
 
-            return response.json({p:prestamo.stock, s:pes2})
+            return response.json({p:prestamo.stock, s:can})
 
         }
         catch{
