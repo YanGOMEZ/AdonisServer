@@ -167,7 +167,12 @@ export default class PrestamosController {
 
             console.log('CERRÉ SESIÓN CON ÉXITO')
 
-            return response.json({p:prestamo.stock, s:valor})
+            if(valor >= prestamo.stock){
+                return false
+            }
+            else{
+                true
+            }
         }
         catch{
             response.badRequest('ERROR AL MOSTRAR')
