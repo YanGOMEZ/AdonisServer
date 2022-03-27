@@ -77,7 +77,7 @@ export default class PrestamosController {
 
             //await mongoose.connection.close()
             con3.connection.close()
-            
+
             console.log('CERRÉ SESIÓN CON ÉXITO')
 
             return prestamo
@@ -167,7 +167,7 @@ export default class PrestamosController {
             console.log('BÚSQUEDA EN MONGO EXITOSA')
 
             //await mongoose.connection.close()
-            cone.connection.close()
+            //cone.connection.close()
 
             console.log('CERRÉ SESIÓN CON ÉXITO')
 
