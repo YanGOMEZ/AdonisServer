@@ -147,7 +147,7 @@ export default class PrestamosController {
             console.log(auth.use('api').user!)
             const prestamo = await Libro.findOrFail(params.id)
 
-            await mongoose.connect('mongodb+srv://YAN:P4nDAJH@utt20170016.kcjvg.mongodb.net/booksite?retryWrites=true&w=majority')
+            const cone = await mongoose.connect('mongodb+srv://YAN:P4nDAJH@utt20170016.kcjvg.mongodb.net/booksite?retryWrites=true&w=majority')
 
             console.log('CONEXIÓN CON EXITO')
             //AQUÍ HACE EL COUNT
@@ -163,7 +163,8 @@ export default class PrestamosController {
 
             console.log('BÚSQUEDA EN MONGO EXITOSA')
 
-            await mongoose.connection.close()
+            //await mongoose.connection.close()
+            cone.connection.close()
 
             console.log('CERRÉ SESIÓN CON ÉXITO')
 
