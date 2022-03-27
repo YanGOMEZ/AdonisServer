@@ -65,7 +65,7 @@ export default class PrestamosController {
             const Entregado = 'NO'
             const prestamo = await Prestamo.create({libro, cliente, Fecha_Entrega, Entregado});
 
-            await mongoose.connect('mongodb+srv://YAN:P4nDAJH@utt20170016.kcjvg.mongodb.net/booksite?retryWrites=true&w=majority')
+            const con3 = await mongoose.connect('mongodb+srv://YAN:P4nDAJH@utt20170016.kcjvg.mongodb.net/booksite?retryWrites=true&w=majority')
 
             console.log('CONEXIÓN CON EXITO')
 
@@ -75,8 +75,9 @@ export default class PrestamosController {
 
             await pre.save().then(() => console.log('creado'))
 
-            await mongoose.connection.close()
-
+            //await mongoose.connection.close()
+            con3.connection.close()
+            
             console.log('CERRÉ SESIÓN CON ÉXITO')
 
             return prestamo
@@ -95,7 +96,7 @@ export default class PrestamosController {
             prestamo.Entregado = 'SÍ'
             await prestamo.save();
 
-            await mongoose.connect('mongodb+srv://YAN:P4nDAJH@utt20170016.kcjvg.mongodb.net/booksite?retryWrites=true&w=majority')
+            const con2 = await mongoose.connect('mongodb+srv://YAN:P4nDAJH@utt20170016.kcjvg.mongodb.net/booksite?retryWrites=true&w=majority')
 
             console.log('CONEXIÓN CON EXITO')
 
@@ -103,7 +104,8 @@ export default class PrestamosController {
 
             console.log('CAMBIO REALIZADO')
 
-            await mongoose.connection.close()
+            //await mongoose.connection.close()
+            con2.connection.close()
 
             console.log('CERRÉ SESIÓN CON ÉXITO')
 
@@ -122,7 +124,7 @@ export default class PrestamosController {
             const prestamo = await Prestamo.findOrFail(params.id);
             await prestamo.delete();
 
-            await mongoose.connect('mongodb+srv://YAN:P4nDAJH@utt20170016.kcjvg.mongodb.net/booksite?retryWrites=true&w=majority')
+            const con1 = await mongoose.connect('mongodb+srv://YAN:P4nDAJH@utt20170016.kcjvg.mongodb.net/booksite?retryWrites=true&w=majority')
 
             console.log('CONEXIÓN CON EXITO')
 
@@ -130,7 +132,8 @@ export default class PrestamosController {
 
             console.log('PRESTAMO ELIMINADO')
 
-            await mongoose.connection.close()
+            //await mongoose.connection.close()
+            con1.connection.close()
 
             console.log('CERRÉ SESIÓN CON ÉXITO')
 
