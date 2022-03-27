@@ -86,7 +86,6 @@ Route.group(()=>{
   //RUTAS USUARIO
   Route.resource('usuario','UsuariosController')
   Route.put('usuarioRol/:id', 'UsuariosController.updateRolToAdmin') //ACTUALIZAR ROL DE USUARIO A ADMIN
-  Route.put('usuarioRolUser/:id', 'UsuariosController.updateRolToUser') //ACTUALIZAR ROL A USUARIO
   Route.post('logout', 'UsuariosController.logout') //CERRAR SESIÓN
 
   //RUTAS AUTOR
