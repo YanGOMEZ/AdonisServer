@@ -103,7 +103,7 @@ export default class PrestamosController {
     }
 
     //ACTUALIZAR AUTOR
-    public async update({params,response, auth}:HttpContextContract){
+    public async update({params,response}:HttpContextContract){
         try{
             //await auth.use('api').authenticate()
             //console.log(auth.use('api').user!)
