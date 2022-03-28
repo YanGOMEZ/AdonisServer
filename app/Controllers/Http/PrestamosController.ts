@@ -11,7 +11,7 @@ export default class PrestamosController {
             const prestamo = await Database.query().from('prestamos')
             .innerJoin('libro', 'prestamos.libro', 'libro.id')
             .innerJoin('usuarios', 'prestamos.cliente', 'usuarios.id')
-            .select('prestamos.id','prestamos.libro as libro_id','libro.titulo'
+            .select('prestamos.id','prestamos.libro as libro_id','libro.titulo as libro'
             ,'prestamos.cliente as id_cliente', 'usuarios.nombre as cliente','prestamos.created_at', 
             'prestamos.updated_at','prestamos.Fecha_Entrega',
             'prestamos.Entregado')
@@ -43,7 +43,7 @@ export default class PrestamosController {
             const prestamo = await Database.query().from('prestamos')
             .innerJoin('libro', 'prestamos.libro', 'libro.id')
             .innerJoin('usuarios', 'prestamos.cliente', 'usuarios.id')
-            .select('prestamos.id','prestamos.libro as libro_id','libro.titulo'
+            .select('prestamos.id','prestamos.libro as libro_id','libro.titulo as libro'
             ,'prestamos.cliente as id_cliente', 'usuarios.nombre as cliente','prestamos.created_at', 
             'prestamos.updated_at','prestamos.Fecha_Entrega',
             'prestamos.Entregado').where('prestamos.cliente', params.id)
