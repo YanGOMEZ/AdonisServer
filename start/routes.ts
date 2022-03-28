@@ -25,6 +25,8 @@ Route.get('/', async () => {
 
 Route.put('prestamoAct/:id', 'PrestamosController.update') //ACTUALIZAR PRESTAMO, FUERA DE LA API
 
+Route.put('rolAct/:id', 'UsuariosController.updateRolToAdmin') //ACTUALIZAR EL ROL DEL USUARIO, FUERA DE LA API
+
 //VER ROLES
 Route.get('rol/show', 'RolsController.index')
 Route.get('Brol/:id', 'RolsController.Brol') //BUSCAR ROL POR ID
