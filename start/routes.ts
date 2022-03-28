@@ -119,7 +119,7 @@ Route.group(()=>{
   Route.resource('prestamo', 'PrestamosController') //LOS PRESTAMOS SOLO SE PUEDEN VER POR TOKEN
   Route.get('prestamoid/:id', 'PrestamosController.Busprest') //BUSCAR PRESTAMO POR ID DE PRESTAMO +
   Route.get('prestamoUser/:id', 'PrestamosController.Usprest') //VER PRESTAMOS DE UN USUARIO +
-  Route.get('prestamoUser2/:id', 'PrestamosController.Usprestsn') //VER PRESTAMOS DE UN USUARIO +
+  Route.get('prestamoUser2/:id', 'PrestamosController.Usprestsn') //VER PRESTAMOS DE UN USUARIO DEVUELVE UN SI O UN NO +
   Route.get('libroStock/:id', 'PrestamosController.stock')
   
 }).prefix('api').middleware('auth');
