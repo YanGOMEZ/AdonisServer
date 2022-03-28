@@ -23,6 +23,8 @@ Route.get('/', async () => {
   return { hello: 'world' }
 })
 
+Route.put('prestamoAct/:id', 'PrestamosController.update') //ACTUALIZAR PRESTAMO, FUERA DE LA API
+
 //VER ROLES
 Route.get('rol/show', 'RolsController.index')
 Route.get('Brol/:id', 'RolsController.Brol') //BUSCAR ROL POR ID
