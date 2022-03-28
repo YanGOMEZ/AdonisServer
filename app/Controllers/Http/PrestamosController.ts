@@ -54,6 +54,19 @@ export default class PrestamosController {
         }
     }
 
+    public async Usprestsn({params, response}:HttpContextContract){
+        try{
+            const prestamo = await Database.query().from('prestamos')
+            .innerJoin('libro', 'prestamos.libro', 'libro.id')
+            .innerJoin('usuarios', 'prestamos.cliente', 'usuarios.id')
+            .select('prestamos.Entregado').where('prestamos.cliente', params.id)
+            return prestamo
+        }
+        catch{
+            response.badRequest('ERROR AL MOSTRAR')
+        }
+    }
+
     //CREAR NUEVO AUTOR
     public async store({request, response, auth}:HttpContextContract){
         try{
