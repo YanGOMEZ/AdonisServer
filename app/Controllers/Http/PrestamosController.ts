@@ -62,7 +62,7 @@ export default class PrestamosController {
             const libro = request.input('libro');
             const cliente = request.input('cliente');
             const fech = new Date()
-            fech.getDay() + 7
+            fech.setDate(fech.getDate() + 7) 
             const Fecha_Entrega = fech//'fecha_entrega'
             const Entregado = 'NO'
             const prestamo = await Prestamo.create({libro, cliente, Fecha_Entrega, Entregado});
