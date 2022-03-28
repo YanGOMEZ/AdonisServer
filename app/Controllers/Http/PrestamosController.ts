@@ -103,10 +103,10 @@ export default class PrestamosController {
     }
 
     //ACTUALIZAR AUTOR
-    public async update({params,response}:HttpContextContract){
+    public async update({params,response, auth}:HttpContextContract){
         try{
-            //await auth.use('api').authenticate()
-            //console.log(auth.use('api').user!)
+            await auth.use('api').authenticate()
+            console.log(auth.use('api').user!)
             const prestamo = await Prestamo.findOrFail(params.id)
             prestamo.Entregado = 'SÍ'
             await prestamo.save();
