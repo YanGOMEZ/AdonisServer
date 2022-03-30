@@ -49,7 +49,7 @@ export default class BarcosController {
                 const partida = request.input('partida')
                 const jugador = request.input('jugador')
                 const barco = index + 1
-                var numero
+                var numero = this.numerosAleatoriosNoRepetidos(1,8,8)
                 var po2
                 var tabla = 0
                 if(index == 0){
