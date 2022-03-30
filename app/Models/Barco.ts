@@ -6,6 +6,9 @@ export default class Barco extends BaseModel {
   public id: number
 
   @column()
+  public partida: number
+
+  @column()
   public jugador: number
 
   @column()
@@ -15,7 +18,7 @@ export default class Barco extends BaseModel {
   public posicion: string
 
   @column()
-  public derribado: number
+  public derribado: string
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
