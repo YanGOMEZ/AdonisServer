@@ -32,8 +32,9 @@ export default class DetallesController {
         try{
             await auth.use('api').authenticate()
             console.log(auth.use('api').user!)
+            const partida = request.input('partida');
             const ganador = request.input('ganador');
-            const rolc = await Detalle.create({ganador});
+            const rolc = await Database.rawQuery('insert into detalles (partida, ganador) values('+ partida +',' + ganador+')')
             return rolc
         }
         catch{
