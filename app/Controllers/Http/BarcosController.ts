@@ -1,6 +1,8 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 import Barco from "App/Models/Barco"
+import Mongobar from 'App/Models/mongoPrestamo'
+import mongoose from 'mongoose'
 
 export default class BarcosController {
     public async index({response}:HttpContextContract){
@@ -93,7 +95,22 @@ export default class BarcosController {
                 regla = regla + 1
                 const posicion = numero.toString() + po2
                 const derribado = 'NO'
-                await Barco.create({partida, jugador, barco, posicion, derribado});
+                const barc = await Barco.create({partida, jugador, barco, posicion, derribado});
+
+                const con3 = await mongoose.connect('mongodb+srv://YAN:P4nDAJH@utt20170016.kcjvg.mongodb.net/booksite?retryWrites=true&w=majority')
+
+                console.log('CONEXIÓN CON EXITO')
+    
+                const pre = new Mongobar.prestamos({id: barc.id, partida: barc.partida, 
+                jugador: barc.jugador, barco: barc.barco, posicion: barc.posicion, derribado: barc.derribado})
+    
+                await pre.save().then(() => console.log('creado'))
+    
+                //await mongoose.connection.close()
+                con3.connection.close()
+    
+                console.log('CERRÉ SESIÓN CON ÉXITO')
+
             }
         }
         catch{
@@ -170,7 +187,21 @@ export default class BarcosController {
                 regla = regla + 1
                 const posicion = numero.toString() + po2
                 const derribado = 'NO'
-                await Barco.create({partida, jugador, barco, posicion, derribado});
+                const barc = await Barco.create({partida, jugador, barco, posicion, derribado});
+
+                const con3 = await mongoose.connect('mongodb+srv://YAN:P4nDAJH@utt20170016.kcjvg.mongodb.net/booksite?retryWrites=true&w=majority')
+
+                console.log('CONEXIÓN CON EXITO')
+    
+                const pre = new Mongobar.prestamos({id: barc.id, partida: barc.partida, 
+                jugador: barc.jugador, barco: barc.barco, posicion: barc.posicion, derribado: barc.derribado})
+    
+                await pre.save().then(() => console.log('creado'))
+    
+                //await mongoose.connection.close()
+                con3.connection.close()
+    
+                console.log('CERRÉ SESIÓN CON ÉXITO')
             }
         }
         catch{
@@ -179,17 +210,31 @@ export default class BarcosController {
     }
 
     //ACTUALIZAR AUTOR
-    public async update({request, params, response, auth}:HttpContextContract){
+    public async update({params, response, auth}:HttpContextContract){
         try{
             await auth.use('api').authenticate()
             console.log(auth.use('api').user!)
             const bar = await Barco.findOrFail(params.id)
             bar.derribado = 'SÍ'
             await bar.save();
+
+            const con2 = await mongoose.connect('mongodb+srv://YAN:P4nDAJH@utt20170016.kcjvg.mongodb.net/booksite?retryWrites=true&w=majority')
+
+            console.log('CONEXIÓN CON EXITO')
+
+            await Mongobar.prestamos.updateOne({"id": params.id}, {$set:{"derribado": 'SÍ'}})
+
+            console.log('CAMBIO REALIZADO')
+
+            //await mongoose.connection.close()
+            con2.connection.close()
+
+            console.log('CERRÉ SESIÓN CON ÉXITO')
+
             return bar
         }
         catch{
-            response.badRequest('ERROR AL ACTUALIZAR ROL')
+            response.badRequest('ERROR AL ACTUALIZAR BARCO')
         }
     }
 
@@ -200,6 +245,20 @@ export default class BarcosController {
             console.log(auth.use('api').user!)
             const bar = await Barco.findOrFail(params.id);
             await bar.delete();
+
+            const con1 = await mongoose.connect('mongodb+srv://YAN:P4nDAJH@utt20170016.kcjvg.mongodb.net/booksite?retryWrites=true&w=majority')
+
+            console.log('CONEXIÓN CON EXITO')
+
+            await Mongobar.prestamos.deleteOne({"id": params.id})
+
+            console.log('BARCO ELIMINADO')
+
+            //await mongoose.connection.close()
+            con1.connection.close()
+
+            console.log('CERRÉ SESIÓN CON ÉXITO')
+
             return bar
         }
         catch{
