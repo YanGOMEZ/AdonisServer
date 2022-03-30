@@ -23,6 +23,23 @@ export default class BarcosController {
         }
     }
 
+    public async numerosAleatoriosNoRepetidos(min, max, cantidad) {
+        let numeros=[0,0,0,0,0,0,0,0];
+     
+        if (min>max || cantidad>max-min) {
+            return false;
+        }
+     
+        while (numeros.length<cantidad) {
+            const num=Math.floor((Math.random() * (max - min)) + min );
+            if (numeros.indexOf(num)==-1) {
+                numeros.push(num);
+            }
+        }
+        return numeros;
+    }
+
+
     //CREAR NUEVO AUTOR
     public async storej1({request, response, auth}:HttpContextContract){
         try{
@@ -39,7 +56,7 @@ export default class BarcosController {
                     arreglo[0] = numero
                 }else{
                     for (let index = 1; index < 15; index++) {
-                        for (let indexc = index; indexc < 1000; indexc++) {
+                        for (let indexc = index; indexc < 8; indexc++) {
                             if(arreglo[indexc] != numero){
                                 arreglo[indexc] = numero
                             }
@@ -50,7 +67,17 @@ export default class BarcosController {
                         }
                     }
                 }
-                const posicion = numero.toString()
+                var po2 = 'A'
+                if(index == 4){
+                    po2 = 'B'
+                }
+                else if(index == 8){
+                    po2 = 'C'
+                }
+                else if(index == 12){
+                    po2 = 'D'
+                }
+                const posicion = numero.toString() + po2
                 const derribado = 'NO'
                 await Barco.create({partida, jugador, barco, posicion, derribado});
             }
