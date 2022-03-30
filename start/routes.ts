@@ -45,6 +45,7 @@ Route.group(()=>{
   //RUTAS BARCO
   Route.resource('barco', 'BarcosController')
   Route.post('barcoj1', 'BarcosController.storej1')
+  Route.post('barcoj2', 'BarcosController.storej2')
 
 
   //RUTA AUTH ADMIN
