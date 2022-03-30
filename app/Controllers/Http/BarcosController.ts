@@ -108,7 +108,7 @@ export default class BarcosController {
                     numero = myArray4[regla]
                     po2 = 'D'
                 }
-                regla++
+                regla = regla + 1
                 const posicion = numero.toString() + po2
                 const derribado = 'NO'
                 await Barco.create({partida, jugador, barco, posicion, derribado});
