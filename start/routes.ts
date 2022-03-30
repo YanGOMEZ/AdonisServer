@@ -41,7 +41,7 @@ Route.get('Busuario/:id', 'UsuariosController.Buser') //VER USUARIO POR ID
 Route.group(()=>{
   //RUTAS DE PARTIDA
   Route.resource('partida', 'PartidasController')
-  Route.resource('barco', 'BarcosController')
+  Route.post('barcoj1', 'BarcosController.storej1')
 
 
   //RUTA AUTH ADMIN
