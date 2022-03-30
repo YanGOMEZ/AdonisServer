@@ -6,7 +6,8 @@ export default class Detalles extends BaseSchema {
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
-      table.integer('ganador').unsigned().references('id').inTable('usuarios')
+      table.integer('partida').unsigned().references('id').inTable('partidas').notNullable()
+      table.integer('ganador').unsigned().references('id').inTable('usuarios').notNullable()
     })
   }
 
