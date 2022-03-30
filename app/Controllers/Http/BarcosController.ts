@@ -43,41 +43,37 @@ export default class BarcosController {
     //CREAR NUEVO AUTOR
     public async storej1({request, response, auth}:HttpContextContract){
         try{
+            var myArray = [1, 2, 3, 4, 5, 6, 7, 8];
+            var i,j,k;
+            for (i = myArray.length; i; i--) {
+                j = Math.floor(Math.random() * i);
+                k = myArray[i - 1];
+                myArray[i - 1] = myArray[j];
+                myArray[j] = k;
+            }
             for (let index = 0; index < 15; index++) {
-                var arreglo = [0,0,0,0,0,0,0,0]
                 await auth.use('api').authenticate()
                 console.log(auth.use('api').user!)
                 const partida = request.input('partida')
                 const jugador = request.input('jugador')
                 const barco = index + 1
-                var ale = Math.random() * (8-1) + 1
-                var numero = Math.floor(ale)
-                if(index == 0){
-                    arreglo[0] = numero
-                }else{
-                    for (let index = 1; index < 15; index++) {
-                        for (let indexc = index; indexc < 8; indexc++) {
-                            if(arreglo[indexc] != numero){
-                                arreglo[indexc] = numero
-                            }
-                            else{
-                                var ale = Math.random() * (8-1) + 1
-                                numero = Math.floor(ale)
-                            }
-                        }
-                    }
-                }
+                //var ale = Math.random() * (8-1) + 1
+                var numero
                 var po2
                 if(index >= 0 && index < 4){
+                    numero = myArray[index]
                     po2 ='A'
                 }
                 else if(index >= 4 && index <8){
+                    numero = 10
                     po2 = 'B'
                 }
                 else if(index >= 8 && index <12){
+                    numero = 10
                     po2 = 'C'
                 }
                 else if(index >= 12){
+                    numero = 10
                     po2 = 'D'
                 }
                 const posicion = numero.toString() + po2
