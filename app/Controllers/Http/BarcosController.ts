@@ -78,7 +78,7 @@ export default class BarcosController {
                 myArray2[q - 1] = myArray2[w];
                 myArray2[w] = r;
             }
-
+            var regla = 0
             for (let index = 0; index < 15; index++) {
                 await auth.use('api').authenticate()
                 console.log(auth.use('api').user!)
@@ -88,7 +88,6 @@ export default class BarcosController {
                 //var ale = Math.random() * (8-1) + 1
                 var numero
                 var po2
-                var regla = 0
                 if(regla == 8){
                     regla = 0
                 }
