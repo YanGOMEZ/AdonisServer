@@ -63,20 +63,20 @@ export default class BarcosController {
 
             var myArray3 = [1, 2, 3, 4, 5, 6, 7, 8];
             var g,f,u;
-            for (g = myArray2.length; g; g--) {
+            for (g = myArray3.length; g; g--) {
                 f = Math.floor(Math.random() * g);
-                u = myArray2[g - 1];
-                myArray2[g - 1] = myArray2[f];
-                myArray2[f] = u;
+                u = myArray3[g - 1];
+                myArray3[g - 1] = myArray3[f];
+                myArray3[f] = u;
             }
 
             var myArray4 = [1, 2, 3, 4, 5, 6, 7, 8];
             var q,w,r;
-            for (q = myArray2.length; q; q--) {
+            for (q = myArray4.length; q; q--) {
                 w = Math.floor(Math.random() * q);
-                r = myArray2[q - 1];
-                myArray2[q - 1] = myArray2[w];
-                myArray2[w] = r;
+                r = myArray4[q - 1];
+                myArray4[q - 1] = myArray4[w];
+                myArray4[w] = r;
             }
             var regla = 0
             for (let index = 0; index < 15; index++) {
