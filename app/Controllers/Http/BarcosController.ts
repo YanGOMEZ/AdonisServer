@@ -27,6 +27,7 @@ export default class BarcosController {
     public async storej1({request, response, auth}:HttpContextContract){
         try{
             for (let index = 0; index < 15; index++) {
+                var arreglo = [0,0,0,0,0,0,0,0]
                 await auth.use('api').authenticate()
                 console.log(auth.use('api').user!)
                 const partida = request.input('partida')
@@ -34,6 +35,14 @@ export default class BarcosController {
                 const barco = index + 1
                 var ale = Math.random() * (8-1) + 1
                 var numero = Math.floor(ale)
+                if(index == 0){
+                    arreglo[0] = numero
+                }
+                for (let index = 0; index < 10000; index++) {
+                    if(arreglo[index] != numero){
+                        arreglo[index] = numero
+                    }
+                }
                 const posicion = numero.toString()
                 const derribado = 'NO'
                 await Barco.create({partida, jugador, barco, posicion, derribado});
