@@ -51,6 +51,34 @@ export default class BarcosController {
                 myArray[i - 1] = myArray[j];
                 myArray[j] = k;
             }
+
+            var myArray2 = [1, 2, 3, 4, 5, 6, 7, 8];
+            var a,x,z;
+            for (a = myArray2.length; a; a--) {
+                x = Math.floor(Math.random() * a);
+                z = myArray2[a - 1];
+                myArray2[a - 1] = myArray2[x];
+                myArray2[x] = z;
+            }
+
+            var myArray3 = [1, 2, 3, 4, 5, 6, 7, 8];
+            var g,f,u;
+            for (g = myArray2.length; g; g--) {
+                f = Math.floor(Math.random() * g);
+                u = myArray2[g - 1];
+                myArray2[g - 1] = myArray2[f];
+                myArray2[f] = u;
+            }
+
+            var myArray4 = [1, 2, 3, 4, 5, 6, 7, 8];
+            var q,w,r;
+            for (q = myArray2.length; q; q--) {
+                w = Math.floor(Math.random() * q);
+                r = myArray2[q - 1];
+                myArray2[q - 1] = myArray2[w];
+                myArray2[w] = r;
+            }
+
             for (let index = 0; index < 15; index++) {
                 await auth.use('api').authenticate()
                 console.log(auth.use('api').user!)
@@ -60,22 +88,27 @@ export default class BarcosController {
                 //var ale = Math.random() * (8-1) + 1
                 var numero
                 var po2
+                var regla = 0
+                if(regla == 8){
+                    regla = 0
+                }
                 if(index >= 0 && index < 4){
-                    numero = myArray[index]
+                    numero = myArray[regla]
                     po2 ='A'
                 }
                 else if(index >= 4 && index <8){
-                    numero = 10
+                    numero = myArray2[regla]
                     po2 = 'B'
                 }
                 else if(index >= 8 && index <12){
-                    numero = 10
+                    numero = myArray3[regla]
                     po2 = 'C'
                 }
                 else if(index >= 12){
-                    numero = 10
+                    numero = myArray4[regla]
                     po2 = 'D'
                 }
+                regla++
                 const posicion = numero.toString() + po2
                 const derribado = 'NO'
                 await Barco.create({partida, jugador, barco, posicion, derribado});
