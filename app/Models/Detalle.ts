@@ -9,6 +9,9 @@ export default class Detalle extends BaseModel {
   public id: number
 
   @column()
+  public partida: number
+
+  @column()
   public ganador: number
 
   @column.dateTime({ autoCreate: true })
