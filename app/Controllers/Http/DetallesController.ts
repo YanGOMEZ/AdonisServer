@@ -35,7 +35,6 @@ export default class DetallesController {
             const partida = request.input('partida');
             const ganador = request.input('ganador');
             const rolc = await Database.rawQuery('insert into detalles (partida, ganador) values('+ partida +',' + ganador+')')
-            return rolc
         }
         catch{
             response.badRequest('ERROR AL GUARDAR EL DETALLE DEL GANADOR')

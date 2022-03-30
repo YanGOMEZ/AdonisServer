@@ -1,6 +1,7 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 import Barco from "App/Models/Barco"
+import Detalle from 'App/Models/Detalle'
 import Mongobar from 'App/Models/mongoPrestamo'
 import mongoose from 'mongoose'
 
@@ -265,4 +266,51 @@ export default class BarcosController {
             response.badRequest('ERROR AL ELIMINAR EL ROL')
         }
     }
+
+    public async verGanador({response, params, request}){
+        try{
+            //await auth.use('api').authenticate()
+            //console.log(auth.use('api').user!)
+            const prestamo = await Detalle.findOrFail(params.id)
+            const juga = request.input('jugador')
+            const cone = await mongoose.connect('mongodb+srv://YAN:P4nDAJH@utt20170016.kcjvg.mongodb.net/booksite?retryWrites=true&w=majority')
+
+            console.log('CONEXIÓN CON EXITO')
+            //AQUÍ HACE EL COUNT
+            const j1 = await Mongobar.prestamos.find({"id":params.id, "derribado":"SÍ", "jugador":juga})
+            const j2 = await Mongobar.prestamos.find({"id":params.id, "derribado":"SÍ", "jugador":juga})
+
+            var valor: number
+            var valor2: number
+
+            valor2 = 0
+            valor = 0
+            
+            j1.forEach(element => {
+                valor = valor+1
+            });
+
+            j2.forEach(element => {
+                valor2 = valor2+1
+            });
+
+            console.log('BÚSQUEDA EN MONGO EXITOSA')
+
+            //await mongoose.connection.close()
+            //cone.connection.close()
+
+            console.log('CERRÉ SESIÓN CON ÉXITO')
+
+            if(valor == 15){
+                return response.status(200).json({"perdedor": "jugador 1"})
+            }
+            if(valor2 == 15){
+                return response.status(200).json({"perdedor": "jugador 2"})
+            }
+        }
+        catch{
+            response.badRequest('ERROR AL MOSTRAR')
+        }
+    }
+
 }
