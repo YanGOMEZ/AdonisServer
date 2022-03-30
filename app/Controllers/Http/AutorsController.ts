@@ -1,4 +1,4 @@
-import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+/* import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Autor from 'App/Models/Autor';
 
 export default class AutorsController {
@@ -64,4 +64,4 @@ export default class AutorsController {
             response.badRequest('ERROR AL ELIMINAR EL AUTOR')
         }
     }
-}
+} */

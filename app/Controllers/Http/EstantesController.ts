@@ -1,4 +1,4 @@
-import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+/* import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 import Estante from "App/Models/Estante";
 
@@ -66,3 +66,4 @@ export default class EstantesController {
         }
     }
 }
+ */

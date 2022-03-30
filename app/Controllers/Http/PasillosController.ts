@@ -1,4 +1,4 @@
-import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+/* import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Pasillo from 'App/Models/Pasillo';
 
 export default class PasillosController {
@@ -65,3 +65,4 @@ export default class PasillosController {
         }
     }
 }
+ */

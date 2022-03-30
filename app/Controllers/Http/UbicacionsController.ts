@@ -1,4 +1,4 @@
-import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+/* import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Ubicacion from 'App/Models/Ubicacion';
 
 export default class UbicacionsController {
@@ -96,3 +96,4 @@ export default class UbicacionsController {
         }
     }
 }
+ */

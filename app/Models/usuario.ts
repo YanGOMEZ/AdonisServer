@@ -2,7 +2,7 @@ import { DateTime } from 'luxon'
 import Hash from '@ioc:Adonis/Core/Hash'
 import { column, beforeSave, BaseModel, belongsTo, BelongsTo, HasOne, hasOne } from '@ioc:Adonis/Lucid/Orm'
 import Rol from './Rol'
-import Prestamo from './Prestamo'
+//import Prestamo from './Prestamo'
 
 export default class usuario extends BaseModel {
 
@@ -44,9 +44,9 @@ export default class usuario extends BaseModel {
     }
   }
 
-  @belongsTo(() => Prestamo,{
+  /* @belongsTo(() => Prestamo,{
     foreignKey: 'id'
   })
-  public prestamo: BelongsTo<typeof Prestamo>
+  public prestamo: BelongsTo<typeof Prestamo> */
 
 }

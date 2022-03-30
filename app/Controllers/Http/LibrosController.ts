@@ -1,4 +1,4 @@
-import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+/* import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Database from '@ioc:Adonis/Lucid/Database'
 import Libro from 'App/Models/Libro'
 import mongoose from 'mongoose'
@@ -152,3 +152,4 @@ export default class LibrosController {
         }
     }
 }
+ */

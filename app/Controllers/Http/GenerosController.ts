@@ -1,4 +1,4 @@
-import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+/* import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Genero from 'App/Models/Genero';
 
 export default class GenerosController {
@@ -65,3 +65,4 @@ export default class GenerosController {
         }
     }
 }
+ */

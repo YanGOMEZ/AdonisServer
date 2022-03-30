@@ -1,4 +1,4 @@
-import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+/* import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Editorial from 'App/Models/Editorial';
 
 export default class EditorialsController {
@@ -65,3 +65,4 @@ export default class EditorialsController {
         }
     }
 }
+ */

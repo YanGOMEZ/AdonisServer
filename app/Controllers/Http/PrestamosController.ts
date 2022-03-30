@@ -1,9 +1,9 @@
-import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+/* import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Database from '@ioc:Adonis/Lucid/Database'
-import Prestamo from 'App/Models/Prestamo';
+//import Prestamo from 'App/Models/Prestamo';
 import mongoose from 'mongoose';
 import PrestamoMongo from 'App/Models/mongoPrestamo';
-import Libro from 'App/Models/Libro'
+//import Libro from 'App/Models/Libro'
 
 export default class PrestamosController {
     public async index({response}:HttpContextContract){
@@ -69,7 +69,7 @@ export default class PrestamosController {
 
     //CREAR NUEVO AUTOR
     public async store({request, response, auth}:HttpContextContract){
-        try{
+        try{ 
             await auth.use('api').authenticate()
             console.log(auth.use('api').user!)
             const libro = request.input('libro');
@@ -159,10 +159,10 @@ export default class PrestamosController {
         }
     }
 
-    public async stock({params, response, auth}){
+    public async stock({params, response}){
         try{
-            await auth.use('api').authenticate()
-            console.log(auth.use('api').user!)
+            //await auth.use('api').authenticate()
+            //console.log(auth.use('api').user!)
             const prestamo = await Libro.findOrFail(params.id)
 
             const cone = await mongoose.connect('mongodb+srv://YAN:P4nDAJH@utt20170016.kcjvg.mongodb.net/booksite?retryWrites=true&w=majority')
@@ -199,3 +199,4 @@ export default class PrestamosController {
     }
 
 }
+ */
