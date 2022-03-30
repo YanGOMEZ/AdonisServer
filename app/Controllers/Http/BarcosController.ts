@@ -42,6 +42,10 @@ export default class BarcosController {
                     if(arreglo[index] != numero){
                         arreglo[index] = numero
                     }
+                    else{
+                        var ale = Math.random() * (8-1) + 1
+                        numero = Math.floor(ale)
+                    }
                 }
                 const posicion = numero.toString()
                 const derribado = 'NO'
