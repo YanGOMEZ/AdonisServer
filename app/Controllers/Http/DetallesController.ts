@@ -7,7 +7,7 @@ export default class DetallesController {
         try{
             const rol = await Database.query().from('detalles')
             .innerJoin('usuarios', 'detalles.ganador', 'usuarios.id')
-            .select('detalles.id', 'usuarios.nombre as ganador')
+            .select('detalles.id', 'detalles.partida' ,'usuarios.nombre as ganador')
             return rol
         }
         catch{
@@ -19,7 +19,7 @@ export default class DetallesController {
         try{
             const rol = await Database.query().from('detalles')
             .innerJoin('usuarios', 'detalles.ganador', 'usuarios.id')
-            .select('detalles.id', 'usuarios.nombre as ganador').where('usuarios.id', params.id)
+            .select('detalles.id', 'detalles.partida' , 'usuarios.nombre as ganador').where('usuarios.id', params.id)
             return rol
         }
         catch{
