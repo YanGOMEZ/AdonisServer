@@ -37,14 +37,17 @@ export default class BarcosController {
                 var numero = Math.floor(ale)
                 if(index == 0){
                     arreglo[0] = numero
-                }
-                for (let index = 0; index < 10000; index++) {
-                    if(arreglo[index] != numero){
-                        arreglo[index] = numero
-                    }
-                    else{
-                        var ale = Math.random() * (8-1) + 1
-                        numero = Math.floor(ale)
+                }else{
+                    for (let index = 1; index < 15; index++) {
+                        for (let indexc = index; indexc < 1000; indexc++) {
+                            if(arreglo[indexc] != numero){
+                                arreglo[indexc] = numero
+                            }
+                            else{
+                                var ale = Math.random() * (8-1) + 1
+                                numero = Math.floor(ale)
+                            }
+                        }
                     }
                 }
                 const posicion = numero.toString()
