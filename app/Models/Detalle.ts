@@ -5,6 +5,9 @@ export default class Detalle extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
+  @column()
+  public ganador: number
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 

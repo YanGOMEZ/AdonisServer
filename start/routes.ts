@@ -37,48 +37,11 @@ Route.post('usuario/login', 'UsuariosController.login')
 Route.get('usuario/show', 'UsuariosController.index')
 Route.get('Busuario/:id', 'UsuariosController.Buser') //VER USUARIO POR ID
 
-//VER AUTOR
-Route.get('autor/show', 'AutorsController.index');
-Route.get('Bautor/:id', 'AutorsController.Bautor'); //BUSCAR AUTOR POR ID
-
-//VER CATEGORIA
-Route.get('categoria/show', 'CategoriasController.index');
-Route.get('Bcategoria/:id', 'CategoriasController.Bcat'); //BUSCAR CATEGORIA POR ID
-
-//VER EDITORIAL
-Route.get('editorial/show','EditorialsController.index')
-Route.get('Beditorial/:id','EditorialsController.Bedit') //BUSCAR EDITORIAL POR ID
-
-//VER GENEROS
-Route.get('genero/show','GenerosController.index')
-Route.get('Bgenero/:id','GenerosController.Bgen') //BUSCAR GENERO POR ID
-
-//VER ESTANTES
-Route.get('estantes/show','EstantesController.index')
-Route.get('Bestantes/:id','EstantesController.Best') //BUSCAR ESTANTE POR ID
-
-//VER PASILLOS
-Route.get('pasillo/show','PasillosController.index')
-Route.get('Bpasillo/:id','PasillosController.Bpasillo') //BUSCAR PASILLO POR ID
-
-//VER LAS UBICACIONES
-Route.get('ubicacion/show', 'UbicacionsController.index')
-Route.get('upbuscar/:id', 'UbicacionsController.Bpasillo') //BUSCAR POR PASILLO
-Route.get('uebuscar/:id', 'UbicacionsController.Bestante') //BUSCAR POR ESTANTE
-Route.get('Bubicacion/:id', 'UbicacionsController.Bubi') //BUSCAR UBICACION POR ID
-
-//VER LIBROS
-Route.get('libro/show', 'LibrosController.index')
-Route.get('bidlibro/:id', 'LibrosController.Bid') //BUSCAR LIBRO POR ID
-Route.post('bnombreLibro', 'LibrosController.Bnombre') //BUSCAR LIBRO POR NOMBRE +
-
-//VER LIBROS GENERO
-Route.get('lb/show', 'LibrogenerosController.index')
-Route.get('lbGenero/:id', 'LibrogenerosController.LpBuscar') //BUSCAR LIBRO POR GENERO
-Route.get('BlbGenero/:id', 'LibrogenerosController.Blg') //BUSCAR GENERO DE LIBRO POR ID
-
 //TODOS LOS DE DENTRO DEL GROUP NECIESITAN TOKEN
 Route.group(()=>{
+  //RUTAS DE PARTIDA
+  Route.resource('partida', 'PartidasController')
+
 
   //RUTA AUTH ADMIN
   Route.get('admin', 'UsuariosController.IsAdmin')
@@ -91,39 +54,5 @@ Route.group(()=>{
   Route.resource('usuario','UsuariosController')
   Route.put('usuarioRol/:id', 'UsuariosController.updateRolToAdmin') //ACTUALIZAR ROL DE USUARIO A ADMIN
   Route.post('logout', 'UsuariosController.logout') //CERRAR SESIÓN
-
-  //RUTAS AUTOR
-  Route.resource('autor','AutorsController')
-
-  //RUTAS CATEGORIA
-  Route.resource('categoria', 'CategoriasController')
-
-  //RUTAS EDITORIAL
-  Route.resource('editorial','EditorialsController')
-
-  //RUTAS GENERO
-  Route.resource('genero','GenerosController')
-
-  //RUTAS ESTANTE
-  Route.resource('estante','EstantesController')
-
-  //RUTAS PASILLO
-  Route.resource('pasillo','PasillosController')
-
-  //RUTAS UBICACION
-  Route.resource('ubicacion', 'UbicacionsController')
-
-  //RUTAS LIBRO
-  Route.resource('libro', 'LibrosController')
-
-  //RUTAS LIBRO GENERO
-  Route.resource('libroGenero', 'LibrogenerosController')
-
-  //RUTAS PRESTAMO
-  Route.resource('prestamo', 'PrestamosController') //LOS PRESTAMOS SOLO SE PUEDEN VER POR TOKEN
-  Route.get('prestamoid/:id', 'PrestamosController.Busprest') //BUSCAR PRESTAMO POR ID DE PRESTAMO +
-  Route.get('prestamoUser/:id', 'PrestamosController.Usprest') //VER PRESTAMOS DE UN USUARIO +
-  Route.get('prestamoUser2/:id', 'PrestamosController.Usprestsn') //VER PRESTAMOS DE UN USUARIO DEVUELVE UN SI O UN NO +
-  Route.get('libroStock/:id', 'PrestamosController.stock')
   
 }).prefix('api').middleware('auth');

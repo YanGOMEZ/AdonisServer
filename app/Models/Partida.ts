@@ -5,6 +5,12 @@ export default class Partida extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
+  @column()
+  public jugador1: number
+
+  @column()
+  public jugador2: number
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 

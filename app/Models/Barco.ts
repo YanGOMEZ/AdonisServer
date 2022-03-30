@@ -5,6 +5,18 @@ export default class Barco extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
+  @column()
+  public jugador: number
+
+  @column()
+  public barco: number
+
+  @column()
+  public posicion: string
+
+  @column()
+  public derribado: number
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 
