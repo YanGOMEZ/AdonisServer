@@ -44,6 +44,7 @@ Route.group(()=>{
 
   //RUTAS BARCO
   Route.resource('barco', 'BarcosController')
+  Route.get('barcoP/:id', 'BarcosController.Bbarco')
   Route.post('barcoj1', 'BarcosController.storej1')
   Route.post('barcoj2', 'BarcosController.storej2')
   Route.post('ganador/:id', 'BarcosController.verGanador')
