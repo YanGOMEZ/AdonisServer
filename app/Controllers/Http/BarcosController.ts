@@ -17,7 +17,7 @@ export default class BarcosController {
 
     public async Bbarco({params, response}:HttpContextContract){
         try{
-            const bar = await Barco.query().where('id', params.id)
+            const bar = await Barco.query().where('partida', params.id)
             return bar
         }
         catch{
