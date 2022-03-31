@@ -267,6 +267,37 @@ export default class BarcosController {
         }
     }
 
+    public async estadoBarco({response, params}){
+        try{
+            const cone44 = await mongoose.connect('mongodb+srv://YAN:P4nDAJH@utt20170016.kcjvg.mongodb.net/booksite?retryWrites=true&w=majority')
+
+            console.log('CONEXIÓN CON EXITO')
+            //AQUÍ HACE EL COUNT
+            //const barco = request.input('barco')
+            const b = await Mongobar.prestamos.find({"partida":params.id,"derribado":"SÍ", "barco":params.barco})
+
+            console.log('BÚSQUEDA EN MONGO EXITOSA')
+
+            var valor: number
+
+            valor = 0
+            
+            b.forEach(element => {
+                valor = valor+1
+            });
+
+            if(valor != 0){
+                return true
+            }
+            else{
+                return false
+            }
+        }
+        catch{
+            response.badRequest('ERROR AL MOSTRAR')
+        }
+    }
+
     public async verGanador({response, params, request}){
         try{
             //await auth.use('api').authenticate()
