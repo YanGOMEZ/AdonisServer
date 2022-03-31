@@ -276,7 +276,7 @@ export default class BarcosController {
             const barco = request.input('barco')
             const b = await Mongobar.prestamos.find({"partida":params.id,"derribado":"SÍ", "barco":barco})
 
-            console.log('BÚSQUEDA EN MONGO EXITOSA')
+            console.log(b)
 
             var valor: number
 
