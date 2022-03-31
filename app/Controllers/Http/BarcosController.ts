@@ -275,8 +275,6 @@ export default class BarcosController {
             const barco = request.input('barco')
             const b = await Mongobar.prestamos.find({"partida":params.id,"derribado":"SÍ", "id":barco})
 
-            console.log(b)
-
             var valor: number
 
             valor = 0
@@ -284,8 +282,6 @@ export default class BarcosController {
             b.forEach(element => {
                 valor = valor+1
             });
-
-            console.log(valor)
 
             if(valor > 0){
                 return true
