@@ -271,14 +271,13 @@ export default class BarcosController {
         try{
             //await auth.use('api').authenticate()
             //console.log(auth.use('api').user!)
-            const prestamo = await Detalle.findOrFail(params.id)
             const juga = request.input('jugador')
             const cone = await mongoose.connect('mongodb+srv://YAN:P4nDAJH@utt20170016.kcjvg.mongodb.net/booksite?retryWrites=true&w=majority')
 
             console.log('CONEXIÓN CON EXITO')
             //AQUÍ HACE EL COUNT
-            const j1 = await Mongobar.prestamos.find({"id":params.id, "derribado":"SÍ", "jugador":juga})
-            const j2 = await Mongobar.prestamos.find({"id":params.id, "derribado":"SÍ", "jugador":juga})
+            const j1 = await Mongobar.prestamos.find({"partida":params.id,"derribado":"SÍ", "jugador":juga})
+            const j2 = await Mongobar.prestamos.find({"partida":params.id,"derribado":"SÍ", "jugador":juga})
 
             var valor: number
             var valor2: number
