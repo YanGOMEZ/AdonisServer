@@ -274,7 +274,7 @@ export default class BarcosController {
             console.log('CONEXIÓN CON EXITO')
             //AQUÍ HACE EL COUNT
             const barco = request.input('barco')
-            const b = await Mongobar.prestamos.find({"partida":params.id,"derribado":"SÍ", "barco":barco})
+            const b = await Mongobar.prestamos.find({"partida":params.id,"derribado":"SÍ", "id":barco})
 
             console.log(b)
 
