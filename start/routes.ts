@@ -51,6 +51,7 @@ Route.group(()=>{
 
   //RUTAS DETALLE
   Route.resource('detalle', 'DetallesController')
+  Route.get('ususarioPartidas/:id', 'DetallesController.Bganador')
 
 
   //RUTA AUTH ADMIN
