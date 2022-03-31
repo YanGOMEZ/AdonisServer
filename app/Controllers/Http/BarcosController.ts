@@ -286,7 +286,9 @@ export default class BarcosController {
                 valor = valor+1
             });
 
-            if(valor != 0){
+            console.log(valor)
+
+            if(valor > 0){
                 return true
             }
             else{
