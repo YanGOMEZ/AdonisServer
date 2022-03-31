@@ -299,7 +299,9 @@ export default class BarcosController {
             //cone.connection.close()
 
             console.log('CERRÉ SESIÓN CON ÉXITO')
-
+            if(valor <15 && valor2 <15){
+                return response.status(200).json({"perdedor": "ninguno"})
+            }
             if(valor == 15){
                 return response.status(200).json({"perdedor": "jugador 1"})
             }
