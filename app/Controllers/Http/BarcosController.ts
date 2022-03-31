@@ -1,7 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 import Barco from "App/Models/Barco"
-import Detalle from 'App/Models/Detalle'
 import Mongobar from 'App/Models/mongoPrestamo'
 import mongoose from 'mongoose'
 

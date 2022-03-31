@@ -1,6 +1,6 @@
 import { DateTime } from 'luxon'
 import Hash from '@ioc:Adonis/Core/Hash'
-import { column, beforeSave, BaseModel, belongsTo, BelongsTo, HasOne, hasOne } from '@ioc:Adonis/Lucid/Orm'
+import { column, beforeSave, BaseModel, HasOne, hasOne } from '@ioc:Adonis/Lucid/Orm'
 import Rol from './Rol'
 //import Prestamo from './Prestamo'
 
