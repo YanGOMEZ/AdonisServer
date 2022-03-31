@@ -333,7 +333,7 @@ export default class BarcosController {
             //cone.connection.close()
 
             console.log('CERRÉ SESIÓN CON ÉXITO')
-            if(valor <15 && valor2 <15){
+            if(valor <15 && valor2 <15 && params.id !=null){
                 return response.status(200).json({"partida": true})
             }
             if(valor == 15){
