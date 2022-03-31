@@ -300,13 +300,13 @@ export default class BarcosController {
 
             console.log('CERRÉ SESIÓN CON ÉXITO')
             if(valor <15 && valor2 <15){
-                return response.status(200).json({"perdedor": "ninguno"})
+                return response.status(200).json({"partida": true})
             }
             if(valor == 15){
-                return response.status(200).json({"perdedor": "jugador 1"})
+                return response.status(200).json({"partida":false,"perdedor": "jugador 1"})
             }
             if(valor2 == 15){
-                return response.status(200).json({"perdedor": "jugador 2"})
+                return response.status(200).json({"partida":false,"perdedor": "jugador 2"})
             }
         }
         catch{
