@@ -267,14 +267,14 @@ export default class BarcosController {
         }
     }
 
-    public async estadoBarco({response, params}){
+    public async estadoBarco({response, params, request}){
         try{
             const cone44 = await mongoose.connect('mongodb+srv://YAN:P4nDAJH@utt20170016.kcjvg.mongodb.net/booksite?retryWrites=true&w=majority')
 
             console.log('CONEXIÓN CON EXITO')
             //AQUÍ HACE EL COUNT
-            //const barco = request.input('barco')
-            const b = await Mongobar.prestamos.find({"partida":params.id,"derribado":"SÍ", "barco":params.barco})
+            const barco = request.input('barco')
+            const b = await Mongobar.prestamos.find({"partida":params.id,"derribado":"SÍ", "barco":barco})
 
             console.log('BÚSQUEDA EN MONGO EXITOSA')
 
